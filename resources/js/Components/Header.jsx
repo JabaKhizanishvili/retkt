@@ -10,9 +10,9 @@ function classNames(...classes) {
 
 const navigation = [
   { name:window.translations['home'] , href: '/', current: true },
-  { name: window.translations['about'], href: '#', current: false },
-  { name: window.translations['events'], href: '#', current: false },
-  { name: window.translations['contact'], href: '#', current: false },
+  { name: window.translations['about'], href: route('about'), current: false },
+  { name: window.translations['events'], href: route('events'), current: false },
+  { name: window.translations['contact'], href: route('contact'), current: false },
 ]
 export default function Header() {
     const sharedData = usePage().props

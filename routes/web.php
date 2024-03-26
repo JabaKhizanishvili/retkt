@@ -12,6 +12,10 @@ Route::prefix('{locale?}')
     ->group(function () {
 
 Route::get('/', [HomeController::class,'index']);
+Route::get('/about', [HomeController::class,'about'])->name('about');
+Route::get('/events', [HomeController::class,'events'])->name('events');
+Route::get('/contact', [HomeController::class,'contact'])->name('contact');
+
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');

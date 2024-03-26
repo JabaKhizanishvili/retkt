@@ -9,10 +9,10 @@ function classNames(...classes) {
 }
 
 const navigation = [
-  { name: 'Dashboard', href: '#', current: true },
-  { name: 'Team', href: '#', current: false },
-  { name: 'Projects', href: '#', current: false },
-  { name: 'Calendar', href: '#', current: false },
+  { name:window.translations['home'] , href: '/', current: true },
+  { name: window.translations['about'], href: '#', current: false },
+  { name: window.translations['events'], href: '#', current: false },
+  { name: window.translations['contact'], href: '#', current: false },
 ]
 export default function Header() {
     const sharedData = usePage().props
@@ -45,7 +45,7 @@ export default function Header() {
                                         <div className="hidden sm:ml-6 sm:block">
                                             <div className="flex space-x-4">
                                                 {navigation.map((item) => (
-                                                    <a
+                                                    <Link
                                                         key={item.name}
                                                         href={item.href}
                                                         className={classNames(
@@ -55,7 +55,7 @@ export default function Header() {
                                                         aria-current={item.current ? 'page' : undefined}
                                                     >
                                                         {item.name}
-                                                    </a>
+                                                    </Link>
                                                 ))}
                                             </div>
                                         </div>
@@ -97,7 +97,7 @@ export default function Header() {
                                                                     href={route('dashboard')}
                                                                     className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
                                                                 >
-                                                                    Dashboard
+                                                                    {window.translations['dashboard']}
                                                                 </Link>
                                                             )}
                                                         </Menu.Item>
@@ -123,7 +123,7 @@ export default function Header() {
 
                                                                         className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
                                                                     >
-                                                                        Register
+                                                                         {window.translations['auth.register']}
                                                                     </Link>
                                                                 )}
 

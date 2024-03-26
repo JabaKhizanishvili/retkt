@@ -1,5 +1,9 @@
 <?php
 
 return [
-    'home' => 'home'
+    'home' => 'Home',
+    'about' => 'About',
+    'events' => 'Events',
+    'contact' => 'Contact',
+    'dashboard' => 'Dashboard',
 ];

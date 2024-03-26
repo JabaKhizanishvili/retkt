@@ -1,5 +1,6 @@
 import { Link, Head } from '@inertiajs/react';
 import Layout from '@/Layouts/Layout';
+import Carousel from '@/Components/Carousel';
 
 export default function Welcome({ auth, laravelVersion, phpVersion }) {
     const renderHTML = (rawHTML) => React.createElement("div", { dangerouslySetInnerHTML: { __html: rawHTML } });
@@ -13,7 +14,7 @@ export default function Welcome({ auth, laravelVersion, phpVersion }) {
     return (
         <>
             <Layout>
-
+                <Carousel/>
             </Layout>
 
         </>

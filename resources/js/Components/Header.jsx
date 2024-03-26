@@ -8,14 +8,16 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-const navigation = [
-  { name:window.translations['home'] , href: '/', current: true },
-  { name: window.translations['about'], href: route('about'), current: false },
-  { name: window.translations['events'], href: route('events'), current: false },
-  { name: window.translations['contact'], href: route('contact'), current: false },
-]
 export default function Header() {
-    const sharedData = usePage().props
+    const sharedData = usePage().props;
+
+    const navigation = [
+        { name:window.translations['home'] , href: route('home'), current: sharedData.url == route('home') },
+        { name: window.translations['about'], href: route('about'), current: sharedData.url == route('about') },
+        { name: window.translations['events'], href: route('events'), current: sharedData.url == route('events') },
+        { name: window.translations['contact'], href: route('contact'), current: sharedData.url == route('contact') },
+    ]
+
     return (
 
         <>

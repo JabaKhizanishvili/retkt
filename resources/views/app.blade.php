@@ -24,12 +24,13 @@
     <script>
         window.translations = {
             'auth.login': '{{ __('auth.login') }}',
+            'forget_password': '{{ __('auth.forget_password') }}',
             'auth.register': '{{ __('auth.register') }}',
             'dashboard': '{{ __('translations.dashboard') }}',
             'home': '{{ __('translations.home') }}',
             'about': '{{ __('translations.about') }}',
             'contact': '{{ __('translations.contact') }}',
-            'events': '{{ __('translations.events') }}'
+            'events': '{{ __('translations.events') }}',
         };
     </script>
 </body>

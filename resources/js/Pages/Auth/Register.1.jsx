@@ -6,18 +6,17 @@ import PrimaryButton from '@/Components/PrimaryButton';
 import TextInput from '@/Components/TextInput';
 import { Head, Link, useForm } from '@inertiajs/react';
 
+
 export default function Register() {
     const [userType, setUserType] = useState(1);
-    const { data, setData, post, processing, errors, reset, progress } = useForm({
+    const { data, setData, post, processing, errors, reset } = useForm({
         name: '',
         email: '',
-        type: '',
         password: '',
         password_confirmation: '',
-        id_front_img: '',
-        id_back_img: '',
+        image: '',
         phone: '',
-        id_number: '',
+        address: '',
     });
 
     useEffect(() => {
@@ -26,15 +25,10 @@ export default function Register() {
         };
     }, []);
 
-    const handleFileChange = (e, key) => {
-        setData(key, e.target.files[0]);
-    };
-
     const submit = (e) => {
         e.preventDefault();
-        data['type'] = userType;
-        const userData = { ...data };
-        post(route('register'), userData, { forceFormData: true });
+        const userData = { ...data, type: userType };
+        post(route('register'));
     };
 
     return (
@@ -43,28 +37,29 @@ export default function Register() {
 
             <form onSubmit={submit}>
                 <div>
-                    <div className='mb-4 flex justify-around'>
+
+                    <div>
                         <label className="inline-flex items-center">
                             <input
                                 type="radio"
                                 value="buyer"
-                                checked={userType === 1}
-                                onChange={() => setUserType(1)}
-                            />
+                                checked={userType === 'buyer'}
+                                onChange={() => setUserType('buyer')} />
                             <span className="ml-2">Register as Buyer</span>
                         </label>
                         <label className="inline-flex items-center ml-4">
                             <input
                                 type="radio"
                                 value="seller"
-                                checked={userType === 2}
-                                onChange={() => setUserType(2)}
-                            />
+                                checked={userType === 'seller'}
+                                onChange={() => setUserType('seller')} />
                             <span className="ml-2">Register as Seller</span>
                         </label>
                     </div>
 
+
                     <InputLabel htmlFor="name" value="Name" />
+
                     <TextInput
                         id="name"
                         name="name"
@@ -73,13 +68,14 @@ export default function Register() {
                         autoComplete="name"
                         isFocused={true}
                         onChange={(e) => setData('name', e.target.value)}
-                        required
-                    />
+                        required />
+
                     <InputError message={errors.name} className="mt-2" />
                 </div>
 
                 <div className="mt-4">
                     <InputLabel htmlFor="email" value="Email" />
+
                     <TextInput
                         id="email"
                         type="email"
@@ -88,77 +84,14 @@ export default function Register() {
                         className="mt-1 block w-full"
                         autoComplete="username"
                         onChange={(e) => setData('email', e.target.value)}
-                        required
-                    />
+                        required />
+
                     <InputError message={errors.email} className="mt-2" />
                 </div>
 
-                {userType === 2 && (
-                    <>
-                        <div className="mt-4">
-                            <InputLabel htmlFor="image1" value="ID Front" />
-                            <input
-                                type="file"
-                                id="image1"
-                                name="image1"
-                                className="mt-1 block w-full"
-                                onChange={(e) => handleFileChange(e, 'image1')}
-                            />
-                            {progress && (
-                                <progress value={progress.percentage} max="100">
-                                    {progress.percentage}%
-                                </progress>
-                            )}
-                        </div>
-
-                        <div className="mt-4">
-                            <InputLabel htmlFor="image2" value="ID Back" />
-                            <input
-                                type="file"
-                                id="image2"
-                                name="image2"
-                                className="mt-1 block w-full"
-                                onChange={(e) => handleFileChange(e, 'image2')}
-                            />
-                            {progress && (
-                                <progress value={progress.percentage} max="100">
-                                    {progress.percentage}%
-                                </progress>
-                            )}
-                        </div>
-
-                        <div className="mt-4">
-                            <InputLabel htmlFor="phone" value="Phone" />
-                            <TextInput
-                                id="phone"
-                                name="phone"
-                                value={data.phone}
-                                className="mt-1 block w-full"
-                                autoComplete="phone"
-                                onChange={(e) => setData('phone', e.target.value)}
-                                required
-                            />
-                            <InputError message={errors.phone} className="mt-2" />
-                        </div>
-
-                        <div className="mt-4">
-                            <InputLabel htmlFor="id_number" value="ID Number" />
-                            <TextInput
-                                id="id_number"
-                                name="id_number"
-                                value={data.id_number}
-                                className="mt-1 block w-full"
-                                autoComplete="id_number"
-                                onChange={(e) => setData('id_number', e.target.value)}
-                                required
-                            />
-                            <InputError message={errors.id_number} className="mt-2" />
-                        </div>
-                    </>
-                )}
-
                 <div className="mt-4">
                     <InputLabel htmlFor="password" value="Password" />
+
                     <TextInput
                         id="password"
                         type="password"
@@ -167,13 +100,14 @@ export default function Register() {
                         className="mt-1 block w-full"
                         autoComplete="new-password"
                         onChange={(e) => setData('password', e.target.value)}
-                        required
-                    />
+                        required />
+
                     <InputError message={errors.password} className="mt-2" />
                 </div>
 
                 <div className="mt-4">
                     <InputLabel htmlFor="password_confirmation" value="Confirm Password" />
+
                     <TextInput
                         id="password_confirmation"
                         type="password"
@@ -182,8 +116,8 @@ export default function Register() {
                         className="mt-1 block w-full"
                         autoComplete="new-password"
                         onChange={(e) => setData('password_confirmation', e.target.value)}
-                        required
-                    />
+                        required />
+
                     <InputError message={errors.password_confirmation} className="mt-2" />
                 </div>
 

@@ -22,6 +22,8 @@ class User extends Authenticatable
         'password',
         'phone',
         'id_number',
+        'id_front_img',
+        'id_back_img',
         'type',
         'status',
     ];

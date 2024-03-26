@@ -16,8 +16,10 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('phone')->unique()->nullable();
-            $table->boolean('status')->default(true);
+            $table->char('status')->default(true);
             $table->string('id_number')->nullable();
+            $table->text('id_front_img')->nullable();
+            $table->text('id_back_img')->nullable();
             $table->integer('type')->default(0);
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

@@ -3,8 +3,10 @@
 namespace App\Http\Middleware;
 
 use Illuminate\Http\Request;
-use Illuminate\Routing\Route;
+// use Illuminate\Routing\Route;
+use Illuminate\Support\Facades\Route;
 use Inertia\Middleware;
+use Illuminate\Support\Facades\URL;
 
 class HandleInertiaRequests extends Middleware
 {
@@ -36,7 +38,8 @@ class HandleInertiaRequests extends Middleware
                 'user' => $request->user(),
             ],
             'locale' => App()->currentLocale(),
-            'url' => $request->url()
+            'url' => $request->url(),
+            'currentroute' => Route::currentRouteName()
 
         ];
     }

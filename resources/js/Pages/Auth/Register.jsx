@@ -96,14 +96,15 @@ export default function Register() {
                 {userType === 2 && (
                     <>
                         <div className="mt-4">
-                            <InputLabel htmlFor="image1" value="ID Front" />
+                            <InputLabel htmlFor="id_front_img" value="ID Front" />
                             <input
                                 type="file"
-                                id="image1"
-                                name="image1"
+                                id="id_front_img"
+                                name="id_front_img"
                                 className="mt-1 block w-full"
-                                onChange={(e) => handleFileChange(e, 'image1')}
+                                onChange={(e) => handleFileChange(e, 'id_front_img')}
                             />
+                            <InputError message={errors.id_front_img} className="mt-2" />
                             {progress && (
                                 <progress value={progress.percentage} max="100">
                                     {progress.percentage}%
@@ -112,14 +113,15 @@ export default function Register() {
                         </div>
 
                         <div className="mt-4">
-                            <InputLabel htmlFor="image2" value="ID Back" />
+                            <InputLabel htmlFor="id_back_img" value="ID Back" />
                             <input
                                 type="file"
-                                id="image2"
-                                name="image2"
+                                id="id_back_img"
+                                name="id_back_img"
                                 className="mt-1 block w-full"
-                                onChange={(e) => handleFileChange(e, 'image2')}
+                                onChange={(e) => handleFileChange(e, 'id_back_img')}
                             />
+                            <InputError message={errors.id_back_img} className="mt-2" />
                             {progress && (
                                 <progress value={progress.percentage} max="100">
                                     {progress.percentage}%

@@ -1,3 +1,18 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+.carousel-container {
+    width: 100%;
+    /* max-height: 400px !important; */
+    margin: 0 auto;
+}
+
+.carousel-container img {
+    min-height: 300px !important;
+    max-height: 400px !important;
+    object-fit: cover;
+    width: 100%;
+}
+

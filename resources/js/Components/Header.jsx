@@ -72,6 +72,13 @@ export default function Header() {
                                             <BellIcon className="h-6 w-6" aria-hidden="true" />
                                         </button>
 
+                                        <div className='mx-2'>
+                                            {
+                                                sharedData.locale == 'ge' ? <Link href=''>en</Link>
+                                                : <Link href=''>ge</Link>
+                                            }
+                                        </div>
+
                                         {/* Profile dropdown */}
                                         <Menu as="div" className="relative ml-3">
                                             <div>

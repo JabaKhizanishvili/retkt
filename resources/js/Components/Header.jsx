@@ -1,4 +1,5 @@
-import { Link, usePage } from '@inertiajs/react';
+import { Link, usePage, router } from '@inertiajs/react';
+import { Inertia } from '@inertiajs/inertia';
 import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon, UserGroupIcon } from '@heroicons/react/24/outline'
@@ -74,8 +75,10 @@ export default function Header() {
 
                                         <div className='mx-2'>
                                             {
-                                                sharedData.locale == 'ge' ? <Link href=''>en</Link>
-                                                : <Link href=''>ge</Link>
+                                                sharedData.locale == 'ge' ?
+                                                   <Link href={sharedData.locale_urls['English']}>en</Link>
+                                                   :
+                                                   <Link href={sharedData.locale_urls['Georgian']} >ge</Link>
                                             }
                                         </div>
 

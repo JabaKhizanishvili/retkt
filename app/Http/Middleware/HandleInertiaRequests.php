@@ -39,8 +39,40 @@ class HandleInertiaRequests extends Middleware
             ],
             'locale' => App()->currentLocale(),
             'url' => $request->url(),
-            'currentroute' => Route::currentRouteName()
+            'currentroute' => Route::currentRouteName(),
+            'locale_urls' => $this->locale_urls(),
+
 
         ];
     }
+
+
+        protected function locale_urls()
+    {
+        $locales = [
+            'Georgian' => 'ge',
+            'English' => 'en',
+        ];
+
+$routes = array_map(function ($val) {
+    return $this->get_url($val);
+}, $locales);
+
+return $routes;
+
+    }
+
+
+   protected function get_url($lang): string
+{
+
+    $host = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]";
+    $uriSegments = explode("/", parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
+
+    $uriSegments[1] = $lang;
+
+
+    $uriSegments = implode('/', $uriSegments);
+    return $host . $uriSegments;
+}
 }

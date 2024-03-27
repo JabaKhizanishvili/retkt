@@ -37,7 +37,7 @@ class HandleInertiaRequests extends Middleware
             'auth' => [
                 'user' => $request->user(),
             ],
-            'locale' => App()->currentLocale(),
+            // 'locale' => App()->currentLocale(),
             'url' => $request->url(),
             'currentroute' => Route::currentRouteName(),
             'locale_urls' => $this->locale_urls(),

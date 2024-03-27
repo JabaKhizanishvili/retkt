@@ -11,12 +11,12 @@ function classNames(...classes) {
 
 export default function Header() {
     const sharedData = usePage().props;
-
+    const translations = sharedData.translations;
     const navigation = [
-        { name:window.translations['home'] , href: route('home'), current: sharedData.url == route('home') },
-        { name: window.translations['about'], href: route('about'), current: sharedData.url == route('about') },
-        { name: window.translations['events'], href: route('events'), current: sharedData.url == route('events') },
-        { name: window.translations['contact'], href: route('contact'), current: sharedData.url == route('contact') },
+        { name:translations.translations['home'] , href: route('home'), current: route(sharedData.currentroute) == route('home') },
+        { name: translations.translations['about'], href: route('about'), current: route(sharedData.currentroute) == route('about') },
+        { name: translations.translations['events'], href: route('events'), current: route(sharedData.currentroute) == route('events') },
+        { name: translations.translations['contact'], href: route('contact'), current: route(sharedData.currentroute) == route('contact') },
     ]
 
     return (

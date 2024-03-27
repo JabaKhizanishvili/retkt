@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\URL;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Cache;
 
 class setLocale
 {
@@ -41,16 +42,31 @@ class setLocale
 
          $langPath = base_path('/lang');
 
-         foreach (scandir($langPath) as $langDirectory) {
-    if ($langDirectory !== '.' && $langDirectory !== '..' && is_dir($langPath . '/' . $langDirectory)) {
-        foreach (scandir($langPath . '/' . $langDirectory) as $file) {
-            if (pathinfo($file, PATHINFO_EXTENSION) === 'json') {
-                $translationKey = pathinfo($file, PATHINFO_FILENAME);
-                $translations[$langDirectory][$translationKey] = json_decode(file_get_contents($langPath . '/' . $langDirectory . '/' . $file), true);
+    if (!Cache::has('translations')) {
+    $translations = [];
+
+    // Loop through language directories
+    foreach (scandir($langPath) as $langDirectory) {
+        if ($langDirectory !== '.' && $langDirectory !== '..' && is_dir($langPath . '/' . $langDirectory)) {
+            // Initialize translations for the language
+            $translations[$langDirectory] = [];
+
+            // Loop through files in each language directory
+            foreach (scandir($langPath . '/' . $langDirectory) as $file) {
+                if (pathinfo($file, PATHINFO_EXTENSION) === 'json') {
+                    $translationKey = pathinfo($file, PATHINFO_FILENAME);
+                    $translations[$langDirectory][$translationKey] = json_decode(file_get_contents($langPath . '/' . $langDirectory . '/' . $file), true);
+                }
             }
         }
     }
-    }
+
+    // Cache the translations for future use
+    Cache::put('translations', $translations, now()->addHours(24)); // Adjust the cache duration as needed
+} else {
+    // Retrieve translations from cache
+    $translations = Cache::get('translations');
+}
 
         //  $translations = trans('*', [], $locale);
 

@@ -3,7 +3,7 @@ import { Inertia } from '@inertiajs/inertia';
 import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon, UserGroupIcon } from '@heroicons/react/24/outline'
-import { RiAccountCircleFill } from "react-icons/ri";
+// import { RiAccountCircleFill } from "react-icons/ri";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
@@ -88,7 +88,12 @@ export default function Header() {
                                                 <Menu.Button className="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                                                     <span className="absolute -inset-1.5" />
                                                     <span className="sr-only">Open user menu</span>
-                                                    <RiAccountCircleFill className="h-8 w-8 rounded-full bg-white" />
+                                                    {/* <RiAccountCircleFill className="h-8 w-8 rounded-full bg-white" /> */}
+
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="black" viewBox="0 0 24 24" strokeWidth={1.5} stroke="white" className="w-6 h-6">
+  <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+</svg>
+
                                                 </Menu.Button>
                                             </div>
                                             <Transition

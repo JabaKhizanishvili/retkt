@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\URL;
 use Inertia\Inertia;
 
-Route::redirect(Route::current(), env('APP_FALLBACK_LOCALE'));
+// Route::redirect(Route::current(), app()->currentLocale());
 
 Route::prefix('{locale?}')
     ->group(function () {

@@ -1,9 +1,9 @@
-import { Link, usePage, router } from '@inertiajs/react';
+import { Link,  router } from '@inertiajs/react';
+import { usePage } from '@inertiajs/react';
 import { Inertia } from '@inertiajs/inertia';
 import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon, UserGroupIcon } from '@heroicons/react/24/outline'
-// import { RiAccountCircleFill } from "react-icons/ri";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
@@ -11,6 +11,12 @@ function classNames(...classes) {
 
 export default function Header() {
     const sharedData = usePage().props;
+
+    //  useEffect(() => {
+    //      return () => {
+    //         setVersion(sharedData.version);
+    //     };
+    // }, [version]);
     const translations = sharedData.translations;
     const navigation = [
         { name:translations.translations['home'] , href: route('home'), current: route(sharedData.currentroute) == route('home') },
@@ -42,7 +48,7 @@ export default function Header() {
                                         </Disclosure.Button>
                                     </div>
                                     <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-                                        <Link href='/' className='py-2 text-gray-900'>
+                                        <Link href={route('home')} className='py-2 text-gray-900'>
                                             RETKT
                                         </Link>
                                         <div className="hidden sm:ml-6 sm:block">
@@ -77,8 +83,11 @@ export default function Header() {
                                             {
                                                 sharedData.locale == 'ge' ?
                                                    <Link href={sharedData.locale_urls['English']}>en</Link>
+                                                    // <Link href={route('lang', { lang: 'en' })} method="get">en</Link>
                                                    :
                                                    <Link href={sharedData.locale_urls['Georgian']} >ge</Link>
+                                                // <Link href={route('lang', { lang: 'ge' })} method="get">ge</Link>
+
                                             }
                                         </div>
 
@@ -127,7 +136,7 @@ export default function Header() {
                                                                             className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
 
                                                                         >
-                                                                            {window.translations['auth.login']}
+                                                                            {translations.auth['login']}
                                                                             {/* login */}
                                                                         </Link>
                                                                     )}
@@ -140,7 +149,8 @@ export default function Header() {
 
                                                                         className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
                                                                     >
-                                                                         {window.translations['auth.register']}
+                                                                            {translations.auth['register']}
+
                                                                     </Link>
                                                                 )}
 

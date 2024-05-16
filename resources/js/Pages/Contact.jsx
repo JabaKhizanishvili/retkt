@@ -1,10 +1,11 @@
 import Layout from '@/Layouts/Layout';
+import ContactUs from '@/Components/Contact';
 
 export default function Contact() {
     return (
         <>
             <Layout>
-                <h1>Contact</h1>
+                <ContactUs/>
             </Layout>
         </>
    )

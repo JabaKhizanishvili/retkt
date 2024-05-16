@@ -1,6 +1,7 @@
 import { Link,  router } from '@inertiajs/react';
 import { usePage } from '@inertiajs/react';
 import { Inertia } from '@inertiajs/inertia';
+import { useState, useEffect } from 'react';
 import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon, UserGroupIcon } from '@heroicons/react/24/outline'
@@ -10,13 +11,23 @@ function classNames(...classes) {
 }
 
 export default function Header() {
-    const sharedData = usePage().props;
 
-    //  useEffect(() => {
-    //      return () => {
-    //         setVersion(sharedData.version);
-    //     };
-    // }, [version]);
+    const sharedData = usePage().props;
+    const [locale, setLocale] = useState(sharedData.locale);
+
+
+     useEffect(() => {
+         setLocale(sharedData.locale);
+     }, [sharedData.locale]);
+
+
+      const handleLocaleChange = (newLocale) => {
+        setLocale(newLocale);
+
+        // Update URL with new locale
+        window.history.pushState({}, '', `/${newLocale}${window.location.pathname}`);
+    };
+
     const translations = sharedData.translations;
     const navigation = [
         { name:translations.translations['home'] , href: route('home'), current: route(sharedData.currentroute) == route('home') },
@@ -24,6 +35,7 @@ export default function Header() {
         { name: translations.translations['events'], href: route('events'), current: route(sharedData.currentroute) == route('events') },
         { name: translations.translations['contact'], href: route('contact'), current: route(sharedData.currentroute) == route('contact') },
     ]
+
 
     return (
 
@@ -82,10 +94,12 @@ export default function Header() {
                                         <div className='mx-2'>
                                             {
                                                 sharedData.locale == 'ge' ?
-                                                   <Link href={sharedData.locale_urls['English']}>en</Link>
-                                                    // <Link href={route('lang', { lang: 'en' })} method="get">en</Link>
+                                                //    <Link href={sharedData.locale_urls['English']}>en</Link>
+                                                    <Link href={route('lang', { lang: 'en' })} method="get">en</Link>
+                                                    // <Link href={route('lang', { 'lang': 'en' })} >ge</Link>
                                                    :
-                                                   <Link href={sharedData.locale_urls['Georgian']} >ge</Link>
+                                                //    <Link href={sharedData.locale_urls['Georgian']} >ge</Link>
+                                                   <Link href={route('lang',{'lang':'ge'})} >ge</Link>
                                                 // <Link href={route('lang', { lang: 'ge' })} method="get">ge</Link>
 
                                             }

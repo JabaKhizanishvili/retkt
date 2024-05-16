@@ -27,6 +27,16 @@ class HomeController extends Controller
     return Inertia::render('Contact');
     }
 
+    public function lang(Request $request){
+        $request->validate([
+            'lang' => ['required', 'string', 'max:2']
+        ]);
+
+        session(['locale' => $request->lang]);
+
+        return redirect()->back();
+
+    }
 
 
 }
